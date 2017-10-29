@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body
+    @student = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body # TO DO: check 
   end
 
   def update
