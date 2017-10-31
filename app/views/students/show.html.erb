@@ -1,0 +1,22 @@
+Student Hub
+
+Welcome <%= @student.first_name %> <%= @student.last_name %>,
+
+Your contact preferences on file:
+
+Email Address: <%= @student.email %>
+Phone Number: <%= @student.phone_number %>
+
+About You:
+<img source=<%= @student.photo %>>
+<%= @student.bio %>
+
+Personal:
+Website: <%= @student.personal_website %>
+Resume: <%= @student.resume_url %>
+
+Your connected accounts include:
+
+LinkedIn: <%= @student.linkedin_url %>
+Twitter: <%= @student.twitter_handle %>
+GitHub: <%= @student.github_url %>
