@@ -14,18 +14,16 @@ class SessionsController < ApplicationController
     students.each do |student|
       if student.email == params[:email]
         if BCrypt::Password.new(student.password_digest) == params[:password]
+          #student ID does not exist for testing
           session[:student_id] = student.id
           flash[:success] = 'Successfully Logged In!'
           redirect_to "/students/#{student.id}"
-          break
         else
           flash[:warning] = 'Incorrect Password'
-          render :new
         end
       end
     end
     flash[:warning] = 'Email not found'
-    render :new
   end
 
   def destroy
