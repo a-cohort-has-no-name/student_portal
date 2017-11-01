@@ -1,1 +1,31 @@
-index.html.erb
+<h4>Educations</h4>
+
+<% @educations.each do |education| %>
+  <%= form_tag "/students/#{@student.id}/educations/#{@education.id}", method: :patch do  %>
+    University Name:
+    <input type="text" name="university_name" value="<%= education.university_name %>">
+    Degree:
+    <input type="text" name="degree" value="<%= education.degree %>">
+    Start Date:
+    <input type="date" name="start_date" value="<%= education.start_date %>">
+    End Date:
+    <input type="date" name="end_date" value="<%= education.end_date %>">
+    Details:
+    <textarea name="details" value="<%= education.details %>"></textarea>
+    <button type="submit">Save Changes</button>
+  <% end %>
+<% end %>
+
+  <%= form_tag "/students/#{@student.id}/educations", method: :post do  %>
+    University Name:
+    <input type="text" name="university_name">
+    Degree:
+    <input type="text" name="degree">
+    Start Date:
+    <input type="date" name="start_date">
+    End Date:
+    <input type="date" name="end_date">
+    Details:
+    <textarea name="details"></textarea>
+    <button type="submit">Save Changes</button>
+  <% end %>

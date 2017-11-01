@@ -1,1 +1,10 @@
-index.html.erb
+<h4>Capstones</h4>
+
+<% @capstones.each do |capstone| %>
+  <div>
+    <p>Capstone Name: <%= capstone.capstone_name %></p>
+    <p>Description: <%= capstone.description %></p>
+    <p>Capstone URL: <%= capstone.capstone_url %></p>
+    <p>Screenshot: <img src="<%= capstone.screenshot %>"></p>
+  </div>
+<% end %>
