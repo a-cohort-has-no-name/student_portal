@@ -3,7 +3,12 @@ class SkillsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @skill = current_user.skills.find(params[:id])
+    @skill = Skill.find(params[:id])
+  end
+
+  def create
+    @skill = Skill.create(params[:skill_name], params[:student_id])
+    redirect_to "/students/#{:student_id}/skills"
   end
 
   def edit
@@ -11,14 +16,14 @@ class SkillsController < ApplicationController
   end
 
   def update
-    @skill = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body
-    Unirest.patch("#{ENV['API_URL']}/#{@student['id']}", headers: {"Accept" => "application/json"}, parameters: {first_name:params[:first_name], }).body # TO DO: insert other parameters
+    @skill = Unirest.get("#{ENV['API_URL']}/skill/#{params[:id]}").body
+    Unirest.patch("#{ENV['API_URL']}/skill/#{@skill['skill_id']}", headers: {"Accept" => "application/json"}, parameters: {skill_name: params[:skill_name]}).body # TO DO: insert other parameters
   end
 
   def destroy
-    skill = current_user.skills.find(params[:id])
+    skill = Skill.find(params[:id])
     skill.destroy
-    redirect_to "/"
+    redirect_to "/students/#{:student_id}/skills"
   end
 
 end
