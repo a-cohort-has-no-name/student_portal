@@ -1,6 +1,6 @@
 class Skill
 
-  attr_accessor :skill_id, :skill_name, :student_id
+  attr_accessor :id, :skill_name, :student_id
 
   def initialize(options_hash)
     # @first_name = options_hash['first_name']
@@ -16,14 +16,14 @@ class Skill
     # @photo = options_hash['photo']
     # @password_digest = options_hash['password_digest']
 #test
-    @skill_id = options_hash[:skill_id].to_i
+    @id = options_hash[:id].to_i
     @skill_name = options_hash[:skill_name]
     @student_id = options_hash[:student_id].to_i
   end
 
   def self.find(id)
     #student = Unirest.get("#{ENV['API_URL']}/#{id}", headers: {"Accept" => "application/json"}).body
-    skill = {skill_id: 1, skill_name: "test skill", student_id: 1}
+    skill = {id: 1, skill_name: "test skill", student_id: 1}
     Skill.new(skill)
   end
 
@@ -31,7 +31,7 @@ class Skill
     skills = []
 
     #TEST FAKE DATA
-    api_skills = [{skill_id: 1, skill_name: "test skill", student_id: 1}, {skill_id: 2, skill_name: "test skill2", student_id: 1}]
+    api_skills = [{id: 1, skill_name: "test skill", student_id: 1}, {id: 2, skill_name: "test skill2", student_id: 1}]
     #TEST FAKE DATA
 
     #api_skills = Unirest.get("#{ENV['API_URL']}", headers: {"Accept" => "application/json"}).body
