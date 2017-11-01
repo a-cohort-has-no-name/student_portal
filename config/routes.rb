@@ -28,14 +28,12 @@ Rails.application.routes.draw do
 #Education
     get "/students/:student_id/educations" => "educations#index" 
     post "/students/:student_id/educations" => "educations#create"
-    get "/students/:student_id/educations/:education_id" => "educations#edit"
     patch "/students/:student_id/educations/:education_id" => "educations#update"
     delete "/students/:student_id/educations/:education_id" => "educations#destroy"
 
 #Capstone
     get "/students/:student_id/capstones" => "capstones#index"
     post "/students/:student_id/capstones" => "capstones#create"
-    get "/students/:student_id/capstones/:capstone_id" => "capstones#edit"
     patch "/students/:student_id/capstones/:capstone_id" => "capstones#update"
     delete "/students/:student_id/capstones/:capstone_id" => "capstones#destroy"
 
