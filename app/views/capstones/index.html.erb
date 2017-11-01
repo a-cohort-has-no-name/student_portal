@@ -1,10 +1,28 @@
 <h4>Capstones</h4>
 
 <% @capstones.each do |capstone| %>
-  <div>
-    <p>Capstone Name: <%= capstone.capstone_name %></p>
-    <p>Description: <%= capstone.description %></p>
-    <p>Capstone URL: <%= capstone.capstone_url %></p>
-    <p>Screenshot: <img src="<%= capstone.screenshot %>"></p>
-  </div>
+  <%= form_tag "/students/#{@student.id}/capstones/#{@capstone.id}", method: :patch do  %>
+    Capstone Name:
+    <input type="text" name="capstone_name" value="<%= capstone.capstone_name %>">
+    Description:
+    <textarea name="description" value="<%= capstone.description %>"></textarea>
+    Capstone URL:
+    <input type="text" name="capstone_url" value="<%= capstone.capstone_url %>">
+    Screenshot:
+    <img src="<%= capstone.screenshot%>">
+    <input type="text" name="screenshot" value="<%= capstone.screenshot%>">
+    <button type="submit">Save Changes</button>
+  <% end %>
 <% end %>
+
+  <%= form_tag "/students/#{@student.id}/capstones", method: :post do  %>
+   Capstone Name:
+    <input type="text" name="capstone_name">
+    Description:
+    <textarea name="description"></textarea>
+    Capstone URL:
+    <input type="text" name="capstone_url">
+    Screenshot:
+    <input type="text" name="screenshot">
+    <button type="submit">Add Capstone</button>
+  <% end %>
