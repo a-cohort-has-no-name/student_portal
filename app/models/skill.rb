@@ -1,6 +1,6 @@
 class Skill
 
-  attr_accessor :id, :skill_name, :student_id
+  attr_accessor :skill_id, :skill_name, :student_id
 
   def initialize(options_hash)
     # @first_name = options_hash['first_name']
@@ -16,35 +16,31 @@ class Skill
     # @photo = options_hash['photo']
     # @password_digest = options_hash['password_digest']
 #test
-    @id = options_hash[:id].to_i
-    @skill_name = options_hash[:skill_name]
-    @student_id = options_hash[:student_id].to_i
+    @skill_id = options_hash['skill_id']
+    @skill_name = options_hash['skill_name']
+    @student_id = options_hash['student_id']
   end
 
   def self.find(id)
-    #student = Unirest.get("#{ENV['API_URL']}/#{id}", headers: {"Accept" => "application/json"}).body
-    skill = {id: 1, skill_name: "test skill", student_id: 1}
+    student = Unirest.get("https://macabre-asylum-90626.herokuapp.com/skills/#{id}", headers: {"Accept" => "application/json"}).body
     Skill.new(skill)
   end
 
   def self.all
     skills = []
-
-    #TEST FAKE DATA
-    api_skills = [{id: 1, skill_name: "test skill", student_id: 1}, {id: 2, skill_name: "test skill2", student_id: 1}]
-    #TEST FAKE DATA
-
-    #api_skills = Unirest.get("#{ENV['API_URL']}", headers: {"Accept" => "application/json"}).body
+    api_skills = Unirest.get("https://macabre-asylum-90626.herokuapp.com/skills", headers: {"Accept" => "application/json"}).body
     api_skills.each do |api_skill|
-      skills << Skill.new(api_skill)
+      if api_skill['student_id'] == params[:student_id]
+        skills << Skill.new(api_skill)
+      end
     end
     skills
   end
 
   def self.create(skill_name, student_id)
-    skill = Unirest.post("#{ENV['API_URL']}", headers: {"Accept" => "application/json"}, parameters: {skill_name: skill_name, student_id: student_id}).body
+    skill = Unirest.post("https://macabre-asylum-90626.herokuapp.com/skills", headers: {"Accept" => "application/json"}, parameters: {skill_name: skill_name, student_id: student_id}).body
   end
 
   def destroy
-    Unirest.delete("#{ENV['API_URL']}/skill/#{id}")
+    Unirest.delete("https://macabre-asylum-90626.herokuapp.com/skills/#{params[:skill_id]}")
 end

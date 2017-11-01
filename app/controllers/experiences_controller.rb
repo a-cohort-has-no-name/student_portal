@@ -1,8 +1,9 @@
 class ExperiencesController < ApplicationController
 
   before_action :authenticate_user!
+  
   def show
-    @experience = Experience.find(params[:id])
+    @experience = Experience.find(params[:experience_id])
   end
 
   def create
@@ -10,19 +11,15 @@ class ExperiencesController < ApplicationController
     redirect_to "/students/#{:student_id}/experiences"
   end
 
-  def edit
-    @experience = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body # TO DO: check if url is correct
-  end
-
   def update
-    @experience = Unirest.get("#{ENV['API_URL']}/experience/#{params[:id]}").body
-    Unirest.patch("#{ENV['API_URL']}/skill/#{@skill['skill_id']}", headers: {"Accept" => "application/json"}, parameters: {skill_name: params[:skill_name]}).body # TO DO: insert other parameters
+    @experience = Unirest.get("https://macabre-asylum-90626.herokuapp.com/experiences/#{params[:experience_id]}").body
+    Unirest.patch("https://macabre-asylum-90626.herokuapp.com/experiences/#{params[:experience_id]}", headers: {"Accept" => "application/json"}, parameters: {skill_name: params[:skill_name]}).body # TO DO: insert other parameters
   end
 
   def destroy
-    skill = Experience.find(params[:id])
-    skill.destroy
-    redirect_to "/students/#{:student_id}/skills"
+    experience = Experience.find(params[:experience_id])
+    experience.destroy
+    redirect_to "/students/#{:student_id}/experiences"
   end
 
 end
