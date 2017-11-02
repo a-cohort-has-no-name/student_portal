@@ -3,11 +3,11 @@ class SkillsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @skill = current_user.skills.find(params[:id])
+    @skills = current_user.skills
   end
 
   def edit
-    @skill = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body # TO DO: check if url is correct
+    @skills = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body # TO DO: check if url is correct
   end
 
   def update

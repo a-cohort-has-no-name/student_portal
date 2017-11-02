@@ -1,1 +1,34 @@
-index.html.erb
+<h4>Experiences</h4>
+
+<% @experiences.each do |experience| %>
+  <%= form_tag "/students/#{@student.id}/experiences/#{@experience.id}", method: :patch do  %>
+    Start Date:
+    <input type="date" name="start_date" value="<%= experience.start_date %>">
+    End Date:
+    <input type="date" name="end_date" value="<%= experience.end_date %>">
+    Job Title:
+    <input type="string" name="job_title" value="<%= experience.job_title %>">
+    Company:
+    <input type="string" name="company_name" value="<%= experience.company_name %>">
+    Details:
+    <textarea name="details" value="<%= experience.details %>"></textarea>
+    <button type="submit">Save Changes</button>
+    <%= form_tag "/students/#{@student.id}/experiences/#{@experience.id}", method: :delete do %>
+      <input type="submit" value="Delete">
+    <% end %>
+  <% end %>
+<% end %>
+
+  <%= form_tag "/students/#{@student.id}/experiences", method: :post do  %>
+    Start Date:
+    <input type="date" name="start_date">
+    End Date:
+    <input type="date" name="end_date">
+    Job Title:
+    <input type="string" name="job_title">
+    Company:
+    <input type="string" name="company_name">
+    Details:
+    <textarea name="details"></textarea>
+    <button type="submit">Add Education</button>
+  <% end %>
