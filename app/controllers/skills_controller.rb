@@ -2,8 +2,8 @@ class SkillsController < ApplicationController
 
   before_action :authenticate_user!
 
-  def show
-    @skill = Skill.find(params[:skill_id])
+  def index
+    @skill = Skill.all
   end
 
   def create
