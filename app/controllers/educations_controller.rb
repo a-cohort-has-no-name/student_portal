@@ -15,6 +15,7 @@ class EducationsController < ApplicationController
       params[:end_date],
       params[:details],
       )
+    redirect_to "/students/#{:student_id}/educations"
   end
 
   def update
