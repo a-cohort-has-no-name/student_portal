@@ -3,7 +3,7 @@ class ExperiencesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @experience = Experience.all
+    @experiences = Experience.all
   end
 
   def create
