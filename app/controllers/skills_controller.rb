@@ -8,6 +8,7 @@ class SkillsController < ApplicationController
 
   def create
     @skill = Skill.create(
+      current_user.id,
       params[:skill_name],
       params[:student_id]
       )

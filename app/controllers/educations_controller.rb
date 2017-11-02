@@ -8,6 +8,7 @@ class EducationsController < ApplicationController
 
   def create
     @education = Education.create(
+      current_user.id,
       params[:university_name],
       params[:degree],
       params[:start_date],
