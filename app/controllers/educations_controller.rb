@@ -8,12 +8,12 @@ class EducationsController < ApplicationController
 
   def create
     @education = Education.create(
-      @student.id
-      params[:university_name],
-      params[:degree],
-      params[:start_date],
-      params[:end_date],
-      params[:details],
+      student_id: current_user.id,
+      university_name: params[:university_name],
+      degree: params[:degree],
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      details: params[:details],
       )
     redirect_to "/students/#{:student_id}/educations"
   end
