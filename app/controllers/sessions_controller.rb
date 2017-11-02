@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     students = Student.all
     students.each do |student|
       if student.email == params[:email]
-        if BCrypt::Password.new(student.password) == params[:password]
+        if BCrypt::Password.new(student.password_digest) == params[:password]
           #student ID does not exist for testing
           session[:student_id] = student.id
           flash[:success] = 'Successfully Logged In!'
