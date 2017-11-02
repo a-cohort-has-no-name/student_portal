@@ -7,8 +7,12 @@ class SkillsController < ApplicationController
   end
 
   def create
-    @skill = Skill.create(params[:skill_name], params[:student_id])
-    redirect_to "/students/#{:student_id}/skills"
+    @skill = Skill.create(
+      current_user.id,
+      params[:skill_name],
+      params[:student_id]
+      )
+    redirect_to "/students/#{:student_id}"
   end
 
   def update
@@ -19,7 +23,7 @@ class SkillsController < ApplicationController
   def destroy
     skill = Skill.find(params[:skill_id])
     skill.destroy
-    redirect_to "/students/#{:student_id}/skills"
+    redirect_to "/students/#{:student_id}"
   end
 
 end
