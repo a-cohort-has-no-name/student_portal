@@ -1,1 +1,18 @@
-index.html.erb
+<h4>Skills</h4>
+
+<% @skills.each do |skill| %>
+  <%= form_tag "/students/#{@student.id}/skills/#{@skill.id}", method: :patch do  %>
+    Skill:
+    <input type="text" name="skill_name" value="<%= skill.skill_name %>">
+    <button type="submit">Save Changes</button>
+    <%= form_tag "/students/#{@student.id}/skills/#{@skill.id}", method: :delete do %>
+      <input type="submit" value="Delete">
+    <% end %>
+  <% end %>
+<% end %>
+
+  <%= form_tag "/students/#{@student.id}/skills", method: :post do  %>
+    Skill:
+    <input type="text" name="skill_name">
+    <button type="submit">Add Skill</button>
+  <% end %>

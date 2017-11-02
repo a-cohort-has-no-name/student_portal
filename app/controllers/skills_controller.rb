@@ -3,7 +3,7 @@ class SkillsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @skill = Skill.all
+    @skills = Skill.all
   end
 
   def create
@@ -13,6 +13,7 @@ class SkillsController < ApplicationController
       params[:student_id]
       )
     redirect_to "/students/#{:student_id}"
+
   end
 
   def update

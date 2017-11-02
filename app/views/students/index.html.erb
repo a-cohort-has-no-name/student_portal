@@ -1,0 +1,65 @@
+<h1><%= @student.first_name %> <%= @student.last_name %>'s Resume</h1>
+
+<h4>Educations</h4>
+
+<ol>
+    <% @educations.each do |education| %>
+        <li>University Name:
+        <%= education.university_name %>
+        Degree:
+        <%= education.degree %>
+        Start Date:
+        <%= education.start_date %>
+        End Date:
+        <%= education.end_date %>
+        Details:
+        <%= education.details %>
+        </li>
+    <% end %>
+</ol>
+<a href="/students/<%= params[:student_id] %>/educations">Edit Education</a>
+
+<h4>Experiences</h4>
+
+<ol>
+    <% @experiences.each do |experience| %>
+        <li>Start Date:
+        <%= experience.start_date %>
+        End Date:
+        <%= experience.end_date %>
+        Job Title:
+        <%= experience.job_title %>
+        Company:
+        <%= experience.company_name %>
+        Details:
+        <%= experience.details %>
+        </li>
+    <% end %>
+</ol>
+<a href="/students/<%= params[:student_id] %>/experiences">Edit Experience</a>
+
+<h4>Capstones</h4>
+
+<ul>
+    <% @capstones.each do |capstone| %>
+        <li>Capstone Name:
+        <%= capstone.capstone_name %>
+        Description:
+        <%= capstone.description %>
+        Capstone URL:
+        <%= capstone.capstone_url %>
+        Screenshot:
+        <img src="<%= capstone.screenshot%>">
+        </li>
+    <% end %>
+</ul>
+<a href="/students/<%= params[:student_id] %>/capstones">Edit Capstone</a>
+
+<h4>Skills</h4>
+
+<ul>
+    <% @skills.each do |skill| %>
+        <li><%= skill.skill_name %></li>
+    <% end %>
+</ul>
+<a href="/students/<%= params[:student_id] %>/skills">Edit Skills</a>
