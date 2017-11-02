@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:student_id])
   end
 
   def edit
