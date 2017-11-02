@@ -3,7 +3,7 @@ class ExperiencesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @experience = Experience.all
+    @experiences = Experience.all
   end
 
   def create
@@ -34,5 +34,4 @@ class ExperiencesController < ApplicationController
     experience.destroy
     redirect_to "/students/#{:student_id}/experiences"
   end
-
 end

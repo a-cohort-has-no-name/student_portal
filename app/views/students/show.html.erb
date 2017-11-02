@@ -1,0 +1,49 @@
+<h1><%= @student.first_name %> <%= @student.last_name %>'s Resume</h1>
+
+Welcome <%= @student.first_name %> <%= @student.last_name %>,
+
+Your contact preferences on file:
+
+Email Address: <%= @student.email %>
+Phone Number: <%= @student.phone_number %>
+
+About You:
+<img source=<%= @student.photo %>>
+<%= @student.bio %>
+
+Personal:
+Website: <%= @student.personal_website %>
+Resume: <%= @student.resume_url %>
+
+Your connected accounts include:
+
+LinkedIn: <%= @student.linkedin_url %>
+Twitter: <%= @student.twitter_handle %>
+GitHub: <%= @student.github_url %>
+<h4>Skills</h4>
+
+<ul>
+    <% @skills.each do |skill| %>
+        <li><%= skill.skill_name %></li>
+    <% end %>
+</ul>
+<a href="/students/<%= params[:student_id] %>/skills">Edit Skills</a>
+
+<h4>Experiences</h4>
+
+<ol>
+    <% @experiences.each do |experience| %>
+        <ul>Start Date:
+        <%= experience.start_date %>
+        End Date:
+        <%= experience.end_date %>
+        Job Title:
+        <%= experience.job_title %>
+        Company:
+        <%= experience.company_name %>
+        Details:
+        <%= experience.details %>
+        </ul>
+    <% end %>
+</ol>
+<a href="/students/<%= params[:student_id] %>/experiences">Edit Experience</a>

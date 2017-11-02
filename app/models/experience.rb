@@ -13,15 +13,15 @@ class Experience
   end
 
   def self.find(id)
-    experience = Unirest.get("https://macabre-asylum-90626.herokuapp.com/experiences/#{id}", headers: {"Accept" => "application/json"}).body
+    experience = Unirest.get("https://macabre-asylum-90626.herokuapp.com/experiences/"+id.to_s, headers: {"Accept" => "application/json"}).body
     Experience.new(experience)
   end
 
-  def self.all
+  def self.all(id)
     experiences = []
     api_experiences = Unirest.get("https://macabre-asylum-90626.herokuapp.com/experiences", headers: {"Accept" => "application/json"}).body
     api_experiences.each do |api_experience|
-      if api_experience['student_id'] == params[:student_id]
+      if api_experience['student_id'] == id
         experiences << Experience.new(api_experience)
       end
     end
@@ -34,4 +34,5 @@ class Experience
 
   def destroy
     Unirest.delete("https://macabre-asylum-90626.herokuapp.com/experiences/#{id}")
+  end
 end

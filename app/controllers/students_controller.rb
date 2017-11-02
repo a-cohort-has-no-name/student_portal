@@ -4,6 +4,8 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:student_id])
+    @skills = Skill.all(params[:student_id].to_i)
+    @experiences = Experience.all(params[:student_id].to_i)
   end
 
   def edit
