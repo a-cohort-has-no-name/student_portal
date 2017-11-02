@@ -1,6 +1,6 @@
 class Student
 
-  attr_accessor :id, :first_name, :last_name, :email, :phone_number, :bio, :linkedin_url, :twitter_handle, :personal_website, :resume_url, :github_url, :photo, :password
+  attr_accessor :id, :first_name, :last_name, :email, :phone_number, :bio, :linkedin_url, :twitter_handle, :personal_website, :resume_url, :github_url, :photo, :password_digest
 
   def initialize(options_hash)
     @id = options_hash['id']
