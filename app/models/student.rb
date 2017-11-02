@@ -19,7 +19,7 @@ class Student
   end
 
   def self.find(id)
-    student = Unirest.get("https://macabre-asylum-90626.herokuapp.com/students/#{id}", headers: {"Accept" => "application/json"}).body
+    student = Unirest.get("https://macabre-asylum-90626.herokuapp.com/students/" + id.to_s, headers: {"Accept" => "application/json"}).body
     Student.new(student)
   end
 
