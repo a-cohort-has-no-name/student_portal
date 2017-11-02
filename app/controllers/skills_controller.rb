@@ -2,23 +2,29 @@ class SkillsController < ApplicationController
 
   before_action :authenticate_user!
 
-  def show
-    @skills = current_user.skills
+  def index
+    @skills = Skill.all
   end
 
-  def edit
-    @skills = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body # TO DO: check if url is correct
+  def create
+    @skill = Skill.create(
+      current_user.id,
+      params[:skill_name],
+      params[:student_id]
+      )
+    redirect_to "/students/#{:student_id}"
+
   end
 
   def update
-    @skill = Unirest.get("#{ENV['API_URL']}/#{params[:id]}").body
-    Unirest.patch("#{ENV['API_URL']}/#{@student['id']}", headers: {"Accept" => "application/json"}, parameters: {first_name:params[:first_name], }).body # TO DO: insert other parameters
+    @skill = Unirest.get("https://macabre-asylum-90626.herokuapp.com/skill/#{params[:skill_id]}").body
+    Unirest.patch("https://macabre-asylum-90626.herokuapp.com/skills/#{@skill['skill_id']}", headers: {"Accept" => "application/json"}, parameters: {skill_name: params[:skill_name]}).body # TO DO: insert other parameters
   end
 
   def destroy
-    skill = current_user.skills.find(params[:id])
+    skill = Skill.find(params[:skill_id])
     skill.destroy
-    redirect_to "/"
+    redirect_to "/students/#{:student_id}"
   end
 
 end

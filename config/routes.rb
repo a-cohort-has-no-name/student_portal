@@ -14,14 +14,12 @@ Rails.application.routes.draw do
 #Experience
     get "/students/:student_id/experiences" => "experiences#index"
     post "/students/:student_id/experiences" => "experiences#create"
-    get "/students/:student_id/experiences/:experience_id" => "experiences#edit"
     patch "/students/:student_id/experiences/:experience_id" => "experiences#update"
     delete "/students/:student_id/experiences/:experience_id" => "experiences#destroy"
 
 #Skills
     get "/students/:student_id/skills" => "skills#index"
     post "/students/:student_id/skills" => "skills#create"
-    get "/students/:student_id/skills/:skill_id" => "skills#edit"
     patch "/students/:student_id/skills/:skill_id" => "skills#update"
     delete "/students/:student_id/skills/:skill_id" => "skills#destroy"
 
